@@ -14,5 +14,5 @@
     "components/Login.jsx",
     "app/(tabs)/_layout.jsx",
     "app/_layout.jsx"
-, "app/trip-details/index.jsx"  ]
+, "app/trip-details/index.jsx", "configs/props/zod.js"  ]
 }

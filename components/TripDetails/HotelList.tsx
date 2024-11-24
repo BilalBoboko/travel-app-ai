@@ -2,21 +2,8 @@ import { View, Text, FlatList, Image } from 'react-native'
 import React, { useEffect } from 'react'
 import { GetPhotoRef } from "@/services/GooglePlaceAPI"
 import HotelCard from "./HotelCard"
+import { HotelDetailsProps } from '@/configs/props/interface'
 
-interface geoCoordinatesProps {
-    latitude: string,
-    longitude: string,
-}
-
-export interface HotelDetailsProps {
-    address: string,
-    description: string,
-    geoCoordinates: geoCoordinatesProps,
-    hotelName: string,
-    imageUrl: string,
-    price: string,
-    rating: string
-}
 
 interface HotelListParams {
     hotelList: HotelDetailsProps[]

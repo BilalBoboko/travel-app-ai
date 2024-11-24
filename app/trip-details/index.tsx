@@ -1,14 +1,13 @@
 import { View, Text, Image, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
-import { TripDataProps } from '@/components/CreateTrip/tripData'
-import { UserTripsProps } from '@/components/MyTrips/props'
-import { Colors } from '@/constants/Colors'
 import moment from 'moment'
 
+import { Colors } from '@/constants/Colors'
 import FlightInfo from "@/components/TripDetails/FlightInfo";
 import HotelList from '@/components/TripDetails/HotelList'
 import PlannedTrip from '@/components/TripDetails/PlannedTrip'
+import { UserTripsProps, TripDataProps } from '@/configs/props/interface'
 
 type SearchParamsProps = {
     trip: string // UserTripsProps in string
@@ -36,7 +35,7 @@ export default function TripDetails() {
         setTripDetails(_tripDetails);
     }, [])
 
-    return tripDetails && (
+    return userTrip && tripDetails && (
         <ScrollView>
             <Image
                 // source={require("./../../assets/images/image 1.jpeg")}
@@ -58,7 +57,7 @@ export default function TripDetails() {
                 <Text style={{
                     fontSize: 25,
                     fontFamily: "outfit-bold"
-                }}>{userTrip?.tripPlan?.travelPlan?.destination}</Text>
+                }}>{tripDetails.locationInfo.name}</Text>
 
                 <View style={{
                     display: "flex",
@@ -84,13 +83,13 @@ export default function TripDetails() {
                 }}>🚌 {tripDetails.traveller.title}</Text>
 
                 {/* Flight Info */}
-                <FlightInfo flightData={userTrip?.tripPlan.travelPlan?.flightDetails[0]} />
+                <FlightInfo flightData={userTrip.tripPlan.travelPlan.flight} />
 
                 {/* Hotels List */}
                 <HotelList hotelList={userTrip?.tripPlan.travelPlan?.hotels} />
 
                 {/* Trip Day Planner Info */}
-                <PlannedTrip dailyPlan={userTrip?.tripPlan?.travelPlan?.dailyPlan} />
+                <PlannedTrip itinerarys={userTrip?.tripPlan?.travelPlan?.itinerary} />
 
             </View>
 

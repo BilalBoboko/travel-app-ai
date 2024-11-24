@@ -1,7 +1,7 @@
 import { View, Text, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { GetPhotoRef } from '@/services/GooglePlaceAPI';
-import { HotelDetailsProps } from './HotelList';
+import { HotelDetailsProps } from '@/configs/props/interface';
 
 
 interface HotelCardParams {

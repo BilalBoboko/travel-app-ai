@@ -2,21 +2,22 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Colors } from '@/constants/Colors'
-import { ActivityProps } from './PlannedTrip'
 import { GetPhotoRef } from '@/services/GooglePlaceAPI'
+import { ItineraryPlanProps } from '@/configs/props/interface'
+
 
 interface PlaceCardParams {
-    activity: ActivityProps
+    plan: ItineraryPlanProps
 }
 
-export default function PlaceCard({ activity }: PlaceCardParams) {
+export default function PlaceCard({ plan }: PlaceCardParams) {
     const [photoRef, setPhotoRef] = useState();
 
     useEffect(() => {
         GetGooglePhotoRef();
     })
     const GetGooglePhotoRef = async () => {
-        const result = await GetPhotoRef(activity.place);
+        const result = await GetPhotoRef(plan.placeName);
         setPhotoRef(result?.results[0]?.photos[0]?.photo_reference);
         // console.log(result?.results[0]?.photos[0]?.photo_reference);
     }
@@ -43,13 +44,15 @@ export default function PlaceCard({ activity }: PlaceCardParams) {
             <Text style={{
                 fontFamily: "outfit-bold",
                 fontSize: 20
-            }}>{activity.place}</Text>
+            }}>{plan.placeName}</Text>
             <Text style={{
                 fontFamily: "outfit",
                 fontSize: 17,
-            }}>{activity.activity}</Text>
-
-            {/* <Text>Ticket Price: {}</Text> */}
+            }}>{plan.placeDetails}</Text>
+            <Text style={{
+                fontFamily: "outfit",
+                fontSize: 17,
+            }}>🎫 {plan.ticketPricing}</Text>
             <View style={{
                 display: "flex",
                 flexDirection: "row",
@@ -65,7 +68,7 @@ export default function PlaceCard({ activity }: PlaceCardParams) {
                         <Text style={{
                             fontFamily: "outfit-bold",
                             fontSize: 17,
-                        }}> {activity.time}</Text>
+                        }}> {plan.timeToTravel}</Text>
                     </Text>
                 </View>
 

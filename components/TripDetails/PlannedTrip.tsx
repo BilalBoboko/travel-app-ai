@@ -1,29 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import PlaceCard from './PlaceCard';
-
-interface geoCoordinatesProps {
-    latitude: string,
-    longitude: string,
-}
-
-export interface ActivityProps {
-    activity: string,
-    place: string,
-    time: string
-}
-
-interface DailyPlanProps {
-    activities: ActivityProps[],
-    day: string
-}
+import { ItineraryProps } from '@/configs/props/interface';
 
 interface PlannedTripParams {
-    dailyPlan: DailyPlanProps[]
+    itinerarys: ItineraryProps[]
 }
 
-
-export default function PlannedTrip({ dailyPlan }: PlannedTripParams) {
+export default function PlannedTrip({ itinerarys }: PlannedTripParams) {
     return (
         <View style={{
             marginTop: 20
@@ -33,16 +17,15 @@ export default function PlannedTrip({ dailyPlan }: PlannedTripParams) {
                 fontSize: 20
             }}>🏕️ Plan Details</Text>
 
-            {dailyPlan.map((plan) => (
+            {itinerarys.map((itinerary) => (
                 <View>
                     <Text style={{
                         fontFamily: "outfit-medium",
                         fontSize: 20,
                         marginTop: 20
-                    }}>{plan.day}</Text>
-                    {plan.activities.map((activity) => (
-                        <PlaceCard activity={activity} />
-
+                    }}>Day {itinerary.day}</Text>
+                    {itinerary.plans.map((plan) => (
+                        <PlaceCard plan={plan} />
                     ))}
                 </View>
             ))}

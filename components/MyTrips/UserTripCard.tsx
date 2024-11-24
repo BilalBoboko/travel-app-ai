@@ -34,7 +34,7 @@ export default function UserTripCard({ trip }: UserTripCardParams) {
                 <Text style={{
                     fontFamily: "outfit-medium",
                     fontSize: 18,
-                }}>{trip?.tripPlan?.travelPlan?.destination}</Text>
+                }}>{LatestTrip?.locationInfo.name}</Text>
                 <Text style={{
                     fontFamily: "outfit",
                     fontSize: 14,

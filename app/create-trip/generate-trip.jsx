@@ -7,6 +7,7 @@ import { generateTripPrompt } from '../../components/CreateTrip/generate-prompt'
 import { chatSession } from '../../configs/AIModel';
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "./../../configs/FirebaseConfig";
+import { generateTrip } from '../../configs/OpenAIModel';
 
 export default function GenerateTrip() {
     // const navigation = useNavigation();
@@ -30,11 +31,22 @@ export default function GenerateTrip() {
         const FINAL_PROMPT = generateTripPrompt(tripData);
         console.log(FINAL_PROMPT);
 
-        // uncomment on production
-        const result = await chatSession.sendMessage(FINAL_PROMPT);
-        console.log(result.response.text());
-        const tripResp = JSON.parse(result.response.text());
+        /* Gemini AI */
+        // const result = await chatSession.sendMessage(FINAL_PROMPT);
 
+        // console.log(result.response.text());
+        // const tripResp = JSON.parse(result.response.text());
+
+        /* END */
+
+        /* OpenAI GPT */
+        const result = await generateTrip(FINAL_PROMPT);
+        const tripResp = result;
+
+        /* END */
+
+        console.log(JSON.stringify(tripResp));
+        
         setLoading(false);
 
         // add AI Trip to database

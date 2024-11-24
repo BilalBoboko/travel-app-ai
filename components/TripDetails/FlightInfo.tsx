@@ -1,21 +1,11 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Colors } from '@/constants/Colors'
+import { FlightProps } from '@/configs/props/interface'
 
-
-export interface FlightDetailsProps {
-  airline: string,
-  arrivalAirport: string,
-  arrivalDate: string,
-  bookingUrl: string,
-  departureAirport: string,
-  departureDate: string,
-  flightNumber: string,
-  price: string
-}
 
 interface FlightInfoParams {
-  flightData: FlightDetailsProps
+  flightData: FlightProps
 }
 
 export default function FlightInfo({ flightData }: FlightInfoParams) {
@@ -54,11 +44,13 @@ export default function FlightInfo({ flightData }: FlightInfoParams) {
         </TouchableOpacity>
       </View>
 
+      {/* Futue Update: Get Real Airline Details by API */}
       <Text style={{
         fontFamily: "outfit",
         fontSize: 17,
         marginTop: 7
       }}>Airline: Delta</Text>
+
       <Text style={{
         fontFamily: "outfit",
         fontSize: 17

@@ -1,11 +1,10 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { TripDataProps } from '../CreateTrip/tripData'
+import { useRouter } from 'expo-router'
 import moment from "moment"
 import { Colors } from '@/constants/Colors'
 import UserTripCard from "./UserTripCard"
-import { UserTripsProps } from "./props"
-import { useRouter } from 'expo-router'
+import { UserTripsProps, TripDataProps } from '@/configs/props/interface'
 
 interface UserTripListParams {
   userTrips: UserTripsProps[]
@@ -34,7 +33,10 @@ export default function UserTripList({ userTrips }: UserTripListParams) {
           <Text style={{
             fontFamily: "outfit-medium",
             fontSize: 24
-          }}>{userTrips[0]?.tripPlan?.travelPlan?.destination}</Text>
+          }}>
+            {/* {userTrips[0]?.tripPlan?.travelPlan?.destination} */}
+            {LatestTrip.locationInfo.name}
+          </Text>
 
           <View style={{
             display: "flex",
